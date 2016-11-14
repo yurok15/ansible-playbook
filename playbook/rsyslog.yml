@@ -1,0 +1,8 @@
+---
+- hosts: other
+  tasks:
+  - command: chattr -i /etc/rsyslog.conf
+  - replace: dest=/etc/rsyslog.conf regexp='\d{2,3}.\d{2,3}.\d{2,3}.\d{2,3}'  replace='10.254.233.39' backup=yes
+  - command: chattr +i /etc/rsyslog.conf
+#  - name: Restart rsyslog
+  - command: /etc/init.d/rsyslog restart
